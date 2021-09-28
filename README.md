@@ -1,1 +1,1 @@
-# perimetre-wp-boilerplate
+# Perimetre Wordpress Boilerplate

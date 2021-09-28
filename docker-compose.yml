@@ -1,0 +1,45 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: perimetre-mysql
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    container_name: perimetre-wordpress
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    ports:
+      - "3000:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      CHOKIDAR_USEPOLLING: 'true'
+
+
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    container_name: perimetre-phpmyadmin
+    restart: always
+    ports:
+      - 3002:80
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+      UPLOAD_LIMIT: 300M

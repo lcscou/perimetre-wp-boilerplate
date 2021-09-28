@@ -1,0 +1,33 @@
+{
+    "name": "perimetre/new-project",
+    "description": "New Project",
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
+    "require": {
+        
+        "wpackagist-plugin/timber-library":"1.18.2"
+    },
+    "autoload": {
+        "psr-0": {
+            "Perimetre": "src/"
+        }
+    },
+    "extra": {
+        "installer-paths": {
+            "wp-content/mu-plugins/{$name}/": [
+                
+            ],
+            "wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ]
+        }
+    }
+}
