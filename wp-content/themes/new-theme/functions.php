@@ -1,23 +1,13 @@
 <?php
 /**
- * Timber starter-theme
- * https://github.com/timber/starter-theme
+ * Périmètre Wordpress Boilerplate
+ * https://github.com/perimetre/wordpress-boilerplate
  *
  * @package  WordPress
- * @subpackage  Timber
- * @since   Timber 0.1
+ * @subpackage  Périmètre
+ * @since   Périmètre 0.1
  */
 
-/**
- * If you are installing Timber as a Composer dependency in your theme, you'll need this block
- * to load your dependencies and initialize Timber. If you are using Timber via the WordPress.org
- * plug-in, you can safely delete this block.
- */
-$composer_autoload = __DIR__ . '/vendor/autoload.php';
-if ( file_exists( $composer_autoload ) ) {
-	require_once $composer_autoload;
-	$timber = new Timber\Timber();
-}
 
 /**
  * This ensures that Timber is loaded and available as a PHP class.
@@ -58,6 +48,7 @@ Timber::$autoescape = false;
  * You can move this to its own file and include here via php's include("MySite.php")
  */
 class StarterSite extends Timber\Site {
+	
 	/** Add timber support. */
 	public function __construct() {
 		add_action( 'after_setup_theme', array( $this, 'theme_supports' ) );
@@ -163,5 +154,19 @@ class StarterSite extends Timber\Site {
 	}
 
 }
+
+function add_local_scripts() {
+	 
+	// Main Script
+	wp_register_script('global', get_template_directory_uri() . '/dist/global.min.js', array(), '1.0', true );
+	wp_enqueue_script('global');
+	
+	// Main Style
+	wp_enqueue_style('main', get_template_directory_uri() . '/dist/main.min.css');
+	
+}
+	  
+add_action( 'wp_enqueue_scripts', 'add_local_scripts' );
+
 
 new StarterSite();

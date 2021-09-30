@@ -17,7 +17,7 @@
  * Methods for TimberHelper can be found in the /lib sub-directory
  *
  * @package  WordPress
- * @subpackage  Timber
+ * @subpackage  Périmètre
  * @since    Timber 0.1
  */
 

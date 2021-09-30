@@ -7,8 +7,8 @@
  * WooCommerce) you can delete this file and footer.php
  *
  * @package  WordPress
- * @subpackage  Timber
- * @since   Timber 0.1
+ * @subpackage  Périmètre
+ * @since   Périmètre 0.1
  */
 
 $GLOBALS['timberContext'] = Timber::context();
